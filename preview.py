@@ -1,6 +1,7 @@
 import glob as g
 import os
 import time
+from collections import OrderedDict
 from ds9 import (
     setupDs9,
     ds9Set,
@@ -18,7 +19,7 @@ if __name__ == "__main__":
         img_num = 0
         while True:
             imgs = g.glob('*.fits')
-            HFD = {}
+            HFD = OrderedDict()
             if len(imgs) > 0:
                 img_id = imgs[-1].split('_')[0]
                 if img_id != old_img_id:
@@ -34,6 +35,8 @@ if __name__ == "__main__":
                             HFD[i] = [measureHfd(ut_img_id)]
                             if img_num == 0:
                                 ds9Set('GOTO', 'zoom to fit')
+                    for j in HFD:
+                        print('{}: {}'.format(j, HFD[j]))
                     old_img_id = img_id
                     img_num += 1
             time.sleep(1)
