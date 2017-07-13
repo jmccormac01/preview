@@ -6,6 +6,7 @@ from ds9 import (
     ds9Set,
     ds9Display
     )
+from pes import measureHfd
 
 if __name__ == "__main__":
     setupDs9('GOTO')
@@ -24,9 +25,12 @@ if __name__ == "__main__":
                     print('Displaying {}*'.format(img_id))
                     # UT1
                     ds9Set('GOTO', 'frame 1')
-                    ds9Display('GOTO', '{}_UT1.fits'.format(img_id))
+                    ut1_img_id = '{}_UT1.fits'.format(img_id)
+                    ds9Display('GOTO', ut1_img_id)
                     if img_num == 0:
                         ds9Set('GOTO', 'zoom to fit')
+                    ut1_hfd, ut1_std = measureHfd(ut1_img_id)
+                    print('UT1: {} {}'.format(ut1_hfd, ut1_std))
                     # UT2
                     ds9Set('GOTO', 'frame 2')
                     ds9Display('GOTO', '{}_UT2.fits'.format(img_id))
