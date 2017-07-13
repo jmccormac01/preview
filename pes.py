@@ -9,7 +9,7 @@ from astropy.stats.sigma_clipping import sigma_clipped_stats
 def measureHfd(img):
     data = fits.open(img)[0].data
     y, x = data.shape
-    stats_area = data[y-250: y+250, x-250: x+250]
+    stats_area = np.array(data[y-512: y+512, x-512: x+512]).copy(order='C')
     bkg = sep.Background(stats_area)
     thresh = sigma * bkg.globalrms
     objects = sep.extract(data-bkg, thresh)
