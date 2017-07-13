@@ -29,6 +29,7 @@ if len(nights) > 0:
         if len(imgs) > 0:
             img_id = imgs[-1].split('_')[0]
             if img_id != old_img_id:
+                time.sleep(4)
                 print('Displaying {}*'.format(img_id))
                 # UT1
                 ds9Set('GOTO', 'frame 1')
