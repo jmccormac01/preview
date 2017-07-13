@@ -88,7 +88,7 @@ def ds9Display(ds9_name, image_id):
     if os.path.exists(image_id):
         os.system('xpaset {} fits < {}'.format(ds9_name, image_id))
         return True
-    else
+    else:
         return False
 
 def ds9Set(ds9_name, command):
