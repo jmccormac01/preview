@@ -11,7 +11,7 @@ def measureHfd(img):
     y, x = data.shape
     stats_area = np.array(data[y-512: y+512, x-512: x+512]).astype(np.int32).copy(order='C')
     bkg = sep.Background(stats_area)
-    thresh = sigma * bkg.globalrms
+    thresh = 3 * bkg.globalrms
     objects = sep.extract(data-bkg, thresh)
     hfr, mask = sep.flux_radius(stats_area,
                                 objects['x'],
