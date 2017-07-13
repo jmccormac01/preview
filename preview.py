@@ -30,10 +30,13 @@ if __name__ == "__main__":
                         if i != 3:
                             ds9Set('GOTO', 'frame {}'.format(i))
                             ut_img_id = '{}_UT{}.fits'.format(img_id, i)
-                            ds9Display('GOTO', ut_img_id)
-                            HFD[i] = [measureHfd(ut_img_id)]
-                            if img_num == 0:
-                                ds9Set('GOTO', 'zoom to fit')
+                            try:
+                                ds9Display('GOTO', ut_img_id)
+                                HFD[i] = [measureHfd(ut_img_id)]
+                                if img_num == 0:
+                                    ds9Set('GOTO', 'zoom to fit')
+                            except IOError:
+                                pass
                     out_str = "{} ".format(img_id)
                     for j in HFD:
                         out_str = out_str + "{}: {:.3f} {:.3f} ".format(j,
