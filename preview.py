@@ -24,7 +24,6 @@ if __name__ == "__main__":
                 img_id = imgs[-1].split('_')[0]
                 if img_id != old_img_id:
                     time.sleep(4)
-                    print('Displaying {}*'.format(img_id))
                     # loop over UTs
                     for i in range(1, 5):
                         # skip UT3 for now, broken
@@ -35,11 +34,11 @@ if __name__ == "__main__":
                             HFD[i] = [measureHfd(ut_img_id)]
                             if img_num == 0:
                                 ds9Set('GOTO', 'zoom to fit')
-                    out_str = ""
+                    out_str = "{} ".format(img_id)
                     for j in HFD:
                         out_str = out_str + "{}: {:.3f} {:.3f} ".format(j,
-                                                                       HFD[j][0],
-                                                                       HFD[j][1])
+                                                                       HFD[j][0][0],
+                                                                       HFD[j][0][1])
                     print(out_str)
                     old_img_id = img_id
                     img_num += 1
