@@ -15,6 +15,8 @@ def setupDs9(ds9_name):
     ds9Set(ds9_name, 'tile')
 
 startDs9('GOTO')
+print('Waiting 20s for DS9 to start')
+time.sleep(20)
 setupDs9('GOTO')
 
 os.chdir('/data/images/')
@@ -30,19 +32,19 @@ if len(nights) > 0:
                 print('Displaying {}*'.format(img_id))
                 # UT1
                 ds9Set('GOTO', 'frame 1')
-                ds9Display('GOTO', '{}_UT1.fits')
+                ds9Display('GOTO', '{}_UT1.fits'.format(img_id))
                 ds9Set('GOTO', 'zoom to fit')
                 # UT2
                 ds9Set('GOTO', 'frame 2')
-                ds9Display('GOTO', '{}_UT2.fits')
+                ds9Display('GOTO', '{}_UT2.fits'.format(img_id))
                 ds9Set('GOTO', 'zoom to fit')
                 # UT3
                 #ds9Set('GOTO', 'frame 3')
-                #ds9Display('GOTO', '{}_UT3.fits')
+                #ds9Display('GOTO', '{}_UT3.fits'.format(img_id))
                 #ds9Set('GOTO', 'zoom to fit')
                 # UT4
                 ds9Set('GOTO', 'frame 4')
-                ds9Display('GOTO', '{}_UT4.fits')
+                ds9Display('GOTO', '{}_UT4.fits'.format(img_id))
                 ds9Set('GOTO', 'zoom to fit')
                 old_img_id = img_id
         time.sleep(1)
