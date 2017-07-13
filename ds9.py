@@ -85,7 +85,12 @@ def ds9Display(ds9_name, image_id):
     ------
     None
     """
-    os.system('xpaset {} fits < {}'.format(ds9_name, image_id))
+    try:
+        os.system('xpaset {} fits < {}'.format(ds9_name, image_id))
+        res = True
+    except IOError:
+        res = False
+    return res
 
 def ds9Set(ds9_name, command):
     """
