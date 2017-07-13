@@ -35,8 +35,12 @@ if __name__ == "__main__":
                             HFD[i] = [measureHfd(ut_img_id)]
                             if img_num == 0:
                                 ds9Set('GOTO', 'zoom to fit')
+                    out_str = ""
                     for j in HFD:
-                        print('{}: {}'.format(j, HFD[j]))
+                        out_str = out_str + "{}: {:.3f} {:.3f} ".format(j,
+                                                                       HFD[j][0],
+                                                                       HFD[j][1])
+                    print(out_str)
                     old_img_id = img_id
                     img_num += 1
             time.sleep(1)
